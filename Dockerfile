@@ -26,15 +26,7 @@ RUN adduser -s /bin/zsh mick sudo -u 1337 -D
 # User number in case of securityContext in k8s
 USER 1337
 
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-
-# Install ZSH completions
-RUN git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
-
-# Install ZSH theme
-RUN wget https://raw.githubusercontent.com/DylanDelobel/agnoster-timestamp-newline-zsh-theme/refs/heads/master/agnoster-timestamp-newline.zsh-theme -P /home/mick/.oh-my-zsh/themes/
-
-
-COPY assets/.zshrc /home/mick/.zshrc
+COPY setup_zsh.sh /tmp/setup_zsh.sh
+RUN bash /tmp/setup_zsh.sh
 
 ENTRYPOINT ["zsh"]
