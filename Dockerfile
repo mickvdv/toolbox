@@ -26,7 +26,8 @@ RUN adduser -s /bin/zsh mick sudo -u 1338 -D
 # User number in case of securityContext in k8s
 USER 1338
 
-COPY setup_zsh.sh /tmp/setup_zsh.sh
+COPY . /tmp/
 RUN bash /tmp/setup_zsh.sh
+RUN rm -rf /tmp/*
 
 ENTRYPOINT ["zsh"]
