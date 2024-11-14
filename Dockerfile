@@ -21,10 +21,10 @@ RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | b
 RUN curl -s https://fluxcd.io/install.sh | bash
 
 # Add user with sudo rights
-RUN adduser -s /bin/zsh mick sudo -u 1337 -D
+RUN adduser -s /bin/zsh mick sudo -u 1338 -D
 
 # User number in case of securityContext in k8s
-USER 1337
+USER 1338
 
 COPY setup_zsh.sh /tmp/setup_zsh.sh
 RUN bash /tmp/setup_zsh.sh
